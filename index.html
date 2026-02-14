@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi cuchurrumi 💖</title>
 
+<title>Para mi amor 💖</title>
+
+<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
@@ -19,7 +21,7 @@ body{
   height:100vh;
 }
 
-/* EMOJIS DEL FONDO */
+/* EMOJIS SUBIENDO */
 .flotando{
   position:fixed;
   bottom:-50px;
@@ -27,16 +29,6 @@ body{
   animation:subir linear forwards;
   z-index:0;
   opacity:0.9;
-  pointer-events:none;
-}
-
-/* EMOJIS DENTRO DE LA CARTA */
-.flotando-carta{
-  position:absolute;
-  bottom:-50px;
-  font-size:50px;
-  animation:subir linear forwards;
-  z-index:0;
   pointer-events:none;
 }
 
@@ -58,7 +50,7 @@ body{
   padding:15px;
 }
 
-/* CARTA */
+/* CARTA TIPO INVITACIÓN CON BORDES DE GUIONES */
 .carta{
   background:#ffffff;
   padding:40px 30px;
@@ -67,27 +59,19 @@ body{
   max-width:400px;
   text-align:center;
   position:relative;
-  border:5px dashed #ff4d6d;
+  border:5px dashed #ff4d6d; /* Bordes estilo guiones */
   box-shadow:0 10px 25px rgba(0,0,0,0.15);
   font-family:'Poppins', sans-serif;
-  overflow:visible; /* importante para que el 💌 sobresalga */
 }
 
-/* 💌 EN EL BORDE SUPERIOR, centrado y visible */
+/* EFECTO SOBRE LA CARTA */
 .carta:before{
   content:"💌";
   position:absolute;
-  top:-25px; /* justo en el borde */
+  top:-25px;
   left:50%;
   transform:translateX(-50%);
   font-size:40px;
-  z-index:10; /* encima del borde */
-}
-
-/* CONTENIDO de la carta encima de los emojis */
-.titulo, img, .separador, .botones{
-  position:relative;
-  z-index:2;
 }
 
 /* TITULO */
@@ -125,6 +109,7 @@ img:hover{
   display:flex;
   justify-content:center;
   gap:20px;
+  position:relative;
   height:60px;
 }
 
@@ -194,47 +179,26 @@ button:hover{
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
+<!-- EMOJIS CONTINUOS 💖🐼 -->
 <script>
 let emojis=["💖","🐼"];
-
-// EMOJIS DEL FONDO
-function crearEmojiFondo(){
+function crearEmoji(){
   let e=document.createElement("div");
   e.className="flotando";
   e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
   e.style.left=Math.random()*100+"vw";
-  e.style.fontSize=(Math.random()*30+40)+"px";
   e.style.animationDuration=(Math.random()*5+8)+"s";
+  e.style.fontSize=(Math.random()*30+40)+"px";
   document.body.appendChild(e);
   setTimeout(()=>{ e.remove(); },13000);
 }
-setInterval(crearEmojiFondo,300);
-for(let i=0;i<25;i++) crearEmojiFondo();
-
-// EMOJIS DENTRO DE LA CARTA
-window.addEventListener("DOMContentLoaded", ()=>{
-  let contenedorCarta = document.querySelector(".emojis-carta");
-  function crearEmojiCarta(){
-    let e=document.createElement("div");
-    e.className="flotando-carta";
-    e.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
-    e.style.left=Math.random()*100+"%";
-    e.style.fontSize=(Math.random()*30+40)+"px";
-    e.style.animationDuration=(Math.random()*5+8)+"s";
-    // Transparencia media aleatoria entre 0.15 y 0.30
-    e.style.opacity = Math.random() * 0.1 + 0.20;
-    contenedorCarta.appendChild(e);
-    setTimeout(()=>{ e.remove(); },13000);
-  }
-  setInterval(crearEmojiCarta,300);
-  for(let i=0;i<25;i++) crearEmojiCarta();
-});
+setInterval(crearEmoji,300);
+for(let i=0;i<25;i++){ crearEmoji(); }
 </script>
 
 <!-- PANTALLA 1 -->
 <div class="pantalla" id="pantalla1">
   <div class="carta">
-    <div class="emojis-carta"></div>
     <div class="titulo" id="texto"></div>
     <hr class="separador">
     <img src="foto.png">
@@ -263,14 +227,14 @@ window.addEventListener("DOMContentLoaded", ()=>{
       <div class="bloque"><span id="segundos">0</span><br>Segundos</div>
     </div>
     <p style="font-family:Dancing Script;font-size:26px;">
-      Una y mil vidas juntos, feliz san Valentín 🐼💞
+      Una y mil vidas juntos 🐼💞
     </p>
   </div>
 </div>
 
 <script>
 /* TEXTO LETRA POR LETRA */
-let mensaje="¿Quieres ser mi San Valentín?💘";
+let mensaje="¿Quieres ser mi San Valentín? 💌";
 let i=0;
 function escribir(){
   if(i<mensaje.length){
